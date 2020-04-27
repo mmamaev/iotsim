@@ -1,0 +1,21 @@
+python=3.7
+
+### Assembly data generation (`run_mockup.py`) & prerequisite for everything else:
+numpy
+pandas
+pyyaml
+
+
+### Plotting in the notebook:
+matplotlib>=2.2.2
+# Plotly is an option
+# plotly
+
+### AWS:
+# pyarrow is for writing and reading parquet files
+# pyarrow
+# boto3
+# sagemaker
+
+### Testing the code
+pytest

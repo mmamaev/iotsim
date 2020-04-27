@@ -1,0 +1,55 @@
+readers:
+
+  - type: EveryNth
+    label: everynth
+    parameters:
+      step: 2
+      noise: 0.3
+      noise_type: absolute
+
+  - type: EveryNth
+    label: noise_only
+    parameters:
+      step: 1
+      noise: 1
+      noise_type: absolute
+
+  - type: OnChange
+    label: onchange
+
+networks:
+
+  - type: Normal
+    label: normal
+    parameters:
+      delay: 2
+      jitter: 0.3
+      drop_rate: 0.1
+
+
+# assembly:
+
+#   type: Flatline
+#   readers:
+#     default: noise_only
+
+
+assembly:
+
+  type: SimpleActuator
+  parameters:
+    name: Actuator
+    tick: 1
+    control_name: control
+    control_off_duration: [2, 6]
+    control_on_duration: 2
+    sensor_name: sensor
+    sensor_init: 0
+    sensor_rise_rate: 1
+    sensor_fall_rate: 0.5
+    sensor_reaction_delay: 0    
+  readers:
+    control: onchange
+    sensor: everynth
+  networks:
+    default: normal
